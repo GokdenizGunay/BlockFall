@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: GPL-3.0-or-later
-# Copyright (C) 2026 Gökdeniz G.
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 Gökdeniz G.
 """BlockFall için .deb paketi üretir (dpkg-deb gerektirmez, Windows'ta da çalışır).
 
 Kullanım:  python build_deb.py   ->  dist/blockfall_<sürüm>_all.deb

@@ -1,13 +1,7 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: GPL-3.0-or-later
-# Copyright (C) 2026 Gökdeniz G.
-#
-# Bu program özgür yazılımdır: Free Software Foundation tarafından yayımlanan
-# GNU Genel Kamu Lisansı'nın 3. sürümü ya da (tercihinize bağlı olarak) daha
-# sonraki bir sürümünün koşulları altında yeniden dağıtabilir ve/veya
-# değiştirebilirsiniz. Bu program yararlı olması umuduyla, ancak HİÇBİR
-# GARANTİ OLMADAN dağıtılmaktadır. Ayrıntılar için LICENSE dosyasına ya da
-# <https://www.gnu.org/licenses/> adresine bakın.
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 Gökdeniz G.
+# Ayrıntılar için LICENSE dosyasına bakın.
 """BlockFall - Block Blast benzeri blok bulmaca oyunu (GTK3 + Cairo)."""
 
 import json
@@ -26,7 +20,7 @@ gi.require_version("PangoCairo", "1.0")
 from gi.repository import Gdk, Gio, GLib, Gtk, Pango, PangoCairo  # noqa: E402
 
 APP_ID = "io.github.blockfall"
-VERSION = "0.2.4"
+VERSION = "0.2.5"
 SIZE = 8  # tahta boyutu (8x8)
 
 # ---------------------------------------------------------------------------
