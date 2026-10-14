@@ -1,4 +1,6 @@
 #!/bin/sh
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Gökdeniz G.
 # BlockFall kaldırıldıktan sonra: masaüstü kısayollarını sil, önbellekleri yenile.
 set -e
 

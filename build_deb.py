@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Gökdeniz G.
 """BlockFall için .deb paketi üretir (dpkg-deb gerektirmez, Windows'ta da çalışır).
 
 Kullanım:  python build_deb.py   ->  dist/blockfall_<sürüm>_all.deb
@@ -38,6 +40,7 @@ def payload():
         ("usr/share/blockfall/blockfall.py", read("src/blockfall.py"), 0o644),
         (f"usr/share/applications/{APP_ID}.desktop", read(f"data/{APP_ID}.desktop"), 0o644),
         (f"usr/share/icons/hicolor/scalable/apps/{APP_ID}.svg", read(f"data/{APP_ID}.svg"), 0o644),
+        ("usr/share/doc/blockfall/copyright", read("data/copyright"), 0o644),
     ]
 
 

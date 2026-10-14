@@ -1,4 +1,6 @@
 #!/bin/sh
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Gökdeniz G.
 # BlockFall kurulum sonrası: simge/menü önbelleklerini yenile, masaüstü kısayolu ekle.
 set -e
 
