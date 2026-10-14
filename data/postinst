@@ -1,0 +1,38 @@
+#!/bin/sh
+# BlockFall kurulum sonrası: simge/menü önbelleklerini yenile, masaüstü kısayolu ekle.
+set -e
+
+APP=io.github.blockfall
+SRC=/usr/share/applications/$APP.desktop
+
+if [ "$1" = "configure" ]; then
+    if command -v gtk-update-icon-cache >/dev/null 2>&1; then
+        gtk-update-icon-cache -q -t -f /usr/share/icons/hicolor || true
+    fi
+    if command -v update-desktop-database >/dev/null 2>&1; then
+        update-desktop-database -q /usr/share/applications || true
+    fi
+
+    # Masaüstü kısayolu yalnızca ilk kurulumda ve 0.2.0 öncesinden yükseltmede eklenir;
+    # sonraki güncellemelerde kullanıcının sildiği kısayol geri gelmez.
+    if dpkg --compare-versions "$2" lt 0.2.0; then
+        getent passwd | while IFS=: read -r user _ uid _ _ home _; do
+            [ "$uid" -ge 1000 ] 2>/dev/null && [ "$uid" -lt 60000 ] || continue
+            [ -d "$home" ] || continue
+            desk=$(runuser -u "$user" -- env HOME="$home" xdg-user-dir DESKTOP 2>/dev/null || true)
+            [ -n "$desk" ] && [ "$desk" != "$home" ] && [ -d "$desk" ] || continue
+            dst="$desk/$APP.desktop"
+            install -m 755 -o "$user" -g "$(id -gn "$user")" "$SRC" "$dst" || continue
+            # GNOME masaüstü simgeleri (DING) için başlatıcıyı güvenilir işaretle;
+            # yalnızca oturumu açık kullanıcılar için mümkün (oyun ilk açılışta tamamlar).
+            bus="/run/user/$uid/bus"
+            if [ -S "$bus" ]; then
+                runuser -u "$user" -- env HOME="$home" XDG_RUNTIME_DIR="/run/user/$uid" \
+                    DBUS_SESSION_BUS_ADDRESS="unix:path=$bus" \
+                    gio set "$dst" metadata::trusted true >/dev/null 2>&1 || true
+            fi
+        done
+    fi
+fi
+
+exit 0

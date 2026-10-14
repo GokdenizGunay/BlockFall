@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Name=BlockFall
+GenericName=Block Puzzle
+GenericName[tr]=Blok Bulmaca
+Comment=Place blocks, clear lines and rows
+Comment[tr]=Blokları yerleştir, satır ve sütunları temizle
+Exec=blockfall
+Icon=io.github.blockfall
+Terminal=false
+Categories=Game;LogicGame;
+Keywords=block;puzzle;blast;blok;bulmaca;
+StartupNotify=true
+StartupWMClass=blockfall

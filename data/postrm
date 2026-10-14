@@ -1,0 +1,23 @@
+#!/bin/sh
+# BlockFall kaldırıldıktan sonra: masaüstü kısayollarını sil, önbellekleri yenile.
+set -e
+
+APP=io.github.blockfall
+
+if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
+    getent passwd | while IFS=: read -r user _ uid _ _ home _; do
+        [ "$uid" -ge 1000 ] 2>/dev/null && [ "$uid" -lt 60000 ] || continue
+        [ -d "$home" ] || continue
+        desk=$(runuser -u "$user" -- env HOME="$home" xdg-user-dir DESKTOP 2>/dev/null || true)
+        [ -n "$desk" ] && [ -d "$desk" ] || continue
+        rm -f "$desk/$APP.desktop"
+    done
+    if command -v gtk-update-icon-cache >/dev/null 2>&1; then
+        gtk-update-icon-cache -q -t -f /usr/share/icons/hicolor || true
+    fi
+    if command -v update-desktop-database >/dev/null 2>&1; then
+        update-desktop-database -q /usr/share/applications || true
+    fi
+fi
+
+exit 0
