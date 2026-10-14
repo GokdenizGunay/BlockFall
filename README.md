@@ -45,9 +45,3 @@ python build_deb.py
 | `build_deb.py` | `.deb` paketi üreticisi |
 
 Doğrudan çalıştırmak için: `python3 src/blockfall.py`
-
-## Lisans
-
-Copyright © 2026 Gökdeniz G.
-
-BlockFall özgür yazılımdır; [GNU Genel Kamu Lisansı sürüm 3](LICENSE) ya da (tercihinize bağlı olarak) daha sonraki bir sürümü (GPL-3.0-or-later) altında dağıtılır. Kodu kullanabilir, değiştirebilir ve dağıtabilirsiniz; değiştirilmiş sürümleri dağıtırken kaynak kodunu da aynı lisansla paylaşmanız gerekir. Program hiçbir garanti olmadan sunulmaktadır.
