@@ -1,3 +1,5 @@
-dist/
-__pycache__/
+**/dist/
+**/build/
+**/__pycache__/
 *.pyc
+windows/.venv/
